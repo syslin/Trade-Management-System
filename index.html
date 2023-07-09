@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TMS</title>
+</head>
+<body>
+  <h1>Trade Manaagement System!</h1>
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <script>
+    function generateExcel() {
+      const headers = ['S.N', 'Client Name', 'BO ID', 'Stock Symbol', 'CDS Free balance', 'Available Trading Limit'];
+      const data = [
+        ['1', 'ABC', '1301060000000001', 'RHPL', '1000', '1000000.00'],
+        ['', '', '1301060000000001', 'SJCL', '500', ''],
+        ['', '', '1301060000000001', 'BPCL', '800', ''],
+        ['', '', '1301060000000001', 'UPPER', '200', ''],
+        ['2', 'XYZ', '1301060000000002', 'ABC' , '300', '120000']
+      ];
+
+      // Create a new Workbook
+      const workbook = XLSX.utils.book_new();
+
+      // Create a new Worksheet
+      const worksheet = XLSX.utils.aoa_to_sheet([headers, ...data]);
+
+      // Add the Worksheet to the Workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+      // Convert Workbook to Excel file
+      const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+      // Save the Excel file
+      const blob = new Blob([excelFile], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'data.xlsx';
+      link.click();
+    }
+
+    // Example usage:
+    generateExcel();
+  </script>
+</body>
+</html>
