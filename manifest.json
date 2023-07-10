@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Excel Generator",
+  "version": "1.0",
+  "permissions": ["downloads", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["content.js"],
+    "persistent": false
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}

@@ -1,0 +1,8 @@
+let el = document.getElementById('generateBtn')
+if (el) {
+  el.addEventListener('click', function() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'generateExcel' });
+    console.log("herre")
+  });
+})};
